@@ -15,18 +15,21 @@ import { invite } from "@/config/invite";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 
 const pageTitle = `${invite.bride} & ${invite.groom} · Wedding Invitation`;
-const description = `Together with their families, ${invite.bride} and ${invite.groom} invite you to celebrate their wedding on ${invite.dayLine} at ${invite.venue.name}, ${invite.venue.city}.`;
+const description = `Join us to celebrate the wedding of ${invite.bride} & ${invite.groom} on ${invite.dayLine} at ${invite.venue.name}, Thane.`;
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: pageTitle },
       { name: "description", content: description },
+      { property: "og:site_name", content: "Kavita & Saurabh Wedding" },
       { property: "og:title", content: pageTitle },
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
       { property: "og:url", content: invite.productionUrl },
       { property: "og:image", content: invite.ogImage },
+      { property: "og:image:secure_url", content: invite.ogImage },
+      { property: "og:image:type", content: "image/jpeg" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       {

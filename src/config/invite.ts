@@ -33,8 +33,8 @@ export const invite = {
     src: "/bgm.mp3",
     spotifyUrl: "https://open.spotify.com/track/4HiQt4ehQpZEbNFuVzxfvi",
   },
-  productionUrl: "https://kavita-weds-saurabh.invitestory.in",
-  ogImage: "https://kavita-weds-saurabh.invitestory.in/og-image.jpg",
+  productionUrl: "https://kavita-weds-saurabh.invitingyou.top",
+  ogImage: "https://kavita-weds-saurabh.invitingyou.top/og-image.jpg",
 } as const;
 
 export const mapsUrl = "https://maps.app.goo.gl/BSK4BFJsdt76qSGi9?g_st=ic";
