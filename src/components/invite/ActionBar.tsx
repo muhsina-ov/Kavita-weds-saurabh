@@ -29,9 +29,14 @@ export function ActionBar() {
   const share = async () => {
     tap();
     const data = {
-      title: `${invite.groom} & ${invite.bride}`,
-      text: `You're invited — ${invite.dayLine}, ${invite.venue.name}`,
-      url: typeof window !== "undefined" ? window.location.href : "",
+      title: `${invite.bride} & ${invite.groom}`,
+      text: `You're invited to the wedding of ${invite.bride} & ${invite.groom} — ${invite.dayLine}, ${invite.venue.name}`,
+      url:
+        typeof window !== "undefined" &&
+        !window.location.hostname.includes("localhost") &&
+        !window.location.hostname.includes("127.0.0.1")
+          ? window.location.href
+          : invite.productionUrl,
     };
     try {
       if (navigator.share) await navigator.share(data);

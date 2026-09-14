@@ -14,21 +14,32 @@ import { AudioPlayer } from "@/components/invite/AudioPlayer";
 import { invite } from "@/config/invite";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 
-const title = `${invite.groom} & ${invite.bride} — ${invite.dayLine.split(",")[1]?.trim() ?? invite.dateLabel}`;
-const description = `${invite.groom} & ${invite.bride} invite you to celebrate their wedding on ${invite.dayLine} at ${invite.venue.name}, ${invite.venue.city}.`;
+const pageTitle = `${invite.bride} & ${invite.groom} · Wedding Invitation`;
+const description = `Together with their families, ${invite.bride} and ${invite.groom} invite you to celebrate their wedding on ${invite.dayLine} at ${invite.venue.name}, ${invite.venue.city}.`;
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: `${title} · Wedding Invitation` },
+      { title: pageTitle },
       { name: "description", content: description },
-      { property: "og:title", content: `${title} · Wedding Invitation` },
+      { property: "og:title", content: pageTitle },
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: invite.productionUrl },
+      { property: "og:image", content: invite.ogImage },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      {
+        property: "og:image:alt",
+        content: `Wedding invitation for ${invite.bride} & ${invite.groom}`,
+      },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: "@invitestory.in" },
+      { name: "twitter:title", content: pageTitle },
+      { name: "twitter:description", content: description },
+      { name: "twitter:image", content: invite.ogImage },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: invite.productionUrl }],
   }),
   component: Invitation,
 });
