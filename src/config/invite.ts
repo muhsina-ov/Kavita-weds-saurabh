@@ -16,7 +16,7 @@ export const invite = {
   timeLine: "10:30 AM onwards",
   eventTitle: "Wedding of Saurabh & Kavita",
   invitationNote:
-    "Together with their families, Kavita and Saurabh invite you to share in the joy of their wedding — a celebration of love, laughter, and lifelong blessings.",
+    "We invite you to share in the joy of our wedding — a celebration of love, laughter and good food.",
   venue: {
     name: "Exotica Wedding Lawn",
     address: "Near Yeour, Bendipada, Yeoor Hills, Thane, Maharashtra 400606",
@@ -28,13 +28,13 @@ export const invite = {
   },
   closing: "See you there",
   bgm: {
-    title: "Kadhi Tu",
-    artist: "Avinash Vishwajeet, Hrishikesh Ranade",
+    title: "Kadhi Tu Rimzim",
+    artist: "Mumbai Pune Mumbai (Instrumental)",
     src: "/bgm.mp3",
-    spotifyUrl: "https://open.spotify.com/track/4HiQt4ehQpZEbNFuVzxfvi",
+    spotifyUrl: "https://youtu.be/ujIwhstc7kc?si=cUqwP7v1F3QHerj5",
   },
-  productionUrl: "https://kavita-weds-saurabh.invitingyou.top",
-  ogImage: "https://kavita-weds-saurabh.invitingyou.top/og-image.jpg",
+  productionUrl: "https://k-weds-s.invitingyou.top",
+  ogImage: "https://k-weds-s.invitingyou.top/og-image.jpg",
 } as const;
 
 export const mapsUrl = "https://maps.app.goo.gl/BSK4BFJsdt76qSGi9?g_st=ic";

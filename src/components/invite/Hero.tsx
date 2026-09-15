@@ -91,16 +91,17 @@ export function Hero({ ready = true }: { ready?: boolean }) {
         animate={ready ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 1, delay: 0.7 }}
       >
-        Together with their families, celebrating the wedding of
+        Together with our families
       </motion.p>
 
       <motion.h1
-        className="script mt-3 text-[3.25rem] leading-[1.05] text-ink sm:text-7xl"
+        className="script mt-3 inline-flex items-center justify-center flex-nowrap whitespace-nowrap leading-[1.05] text-ink"
+        style={{ fontSize: "clamp(2rem, 7.5vw, 4.25rem)" }}
         initial="hidden"
         animate={anim}
       >
         <ScriptNames text={invite.groom} delay={0.85} trigger={anim} />
-        <span className="mx-3 text-gold sm:mx-5">&</span>
+        <span className="mx-2 text-gold sm:mx-4 md:mx-5">&</span>
         <ScriptNames text={invite.bride} delay={1.2} trigger={anim} />
       </motion.h1>
 
