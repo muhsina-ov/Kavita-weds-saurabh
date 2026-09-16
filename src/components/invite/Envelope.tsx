@@ -28,6 +28,10 @@ export function Envelope({ onOpen }: { onOpen?: () => void }) {
     if (state !== "sealed") return;
     setState("breaking");
     if (navigator.vibrate) navigator.vibrate([12, 40, 18]);
+    const bgm = document.getElementById("invite-bgm") as HTMLAudioElement | null;
+    if (bgm && bgm.paused) {
+      bgm.play().catch(() => {});
+    }
     onOpen?.();
     window.setTimeout(
       () => {

@@ -25,26 +25,59 @@ export function AudioPlayer({ autoPlayTrigger }: AudioPlayerProps) {
     audio.addEventListener("play", onPlay);
     audio.addEventListener("pause", onPause);
 
+    // 1. Attempt autoplay immediately when page opens
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          setIsPlaying(true);
+          setHasInteracted(true);
+        })
+        .catch(() => {
+          // Browser policy blocked silent autoplay; will unlock on first user gesture
+        });
+    }
+
+    // 2. Start music on the very first user interaction anywhere on the screen
+    const unlockAndPlay = () => {
+      if (audio.paused) {
+        audio
+          .play()
+          .then(() => {
+            setIsPlaying(true);
+            setHasInteracted(true);
+          })
+          .catch(() => {});
+      }
+    };
+
+    window.addEventListener("pointerdown", unlockAndPlay, { passive: true, once: true });
+    window.addEventListener("touchstart", unlockAndPlay, { passive: true, once: true });
+    window.addEventListener("click", unlockAndPlay, { passive: true, once: true });
+    window.addEventListener("keydown", unlockAndPlay, { passive: true, once: true });
+
     return () => {
       audio.removeEventListener("play", onPlay);
       audio.removeEventListener("pause", onPause);
+      window.removeEventListener("pointerdown", unlockAndPlay);
+      window.removeEventListener("touchstart", unlockAndPlay);
+      window.removeEventListener("click", unlockAndPlay);
+      window.removeEventListener("keydown", unlockAndPlay);
     };
   }, []);
 
-  // When envelope is opened, attempt playback if not already started
+  // When envelope is opened, ensure playback starts immediately
   useEffect(() => {
-    if (autoPlayTrigger && audioRef.current && !isPlaying) {
+    if (autoPlayTrigger && audioRef.current && audioRef.current.paused) {
       audioRef.current
         .play()
         .then(() => {
           setIsPlaying(true);
           setHasInteracted(true);
         })
-        .catch(() => {
-          // Autoplay blocked by browser until direct interaction
-        });
+        .catch(() => {});
     }
-  }, [autoPlayTrigger, isPlaying]);
+  }, [autoPlayTrigger]);
 
   const toggle = () => {
     if (typeof navigator !== "undefined" && navigator.vibrate) {
@@ -70,7 +103,7 @@ export function AudioPlayer({ autoPlayTrigger }: AudioPlayerProps) {
 
   return (
     <>
-      <audio ref={audioRef} src={invite.bgm.src} preload="auto" loop />
+      <audio id="invite-bgm" ref={audioRef} src={invite.bgm.src} preload="auto" loop />
 
       <motion.div
         className="fixed top-4 right-4 z-40 sm:top-6 sm:right-6"
