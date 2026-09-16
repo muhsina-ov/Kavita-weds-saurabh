@@ -141,8 +141,8 @@ export function AudioPlayer({ autoPlayTrigger }: AudioPlayerProps) {
             )}
           </div>
 
-          {/* Equalizer bars or song label */}
-          <div className="flex items-center gap-1.5 pr-1">
+          {/* Equalizer bars */}
+          <div className="flex items-center">
             {isPlaying ? (
               <div className="flex items-end gap-0.5 h-3">
                 <span className="w-0.5 bg-sepia/70 rounded-full animate-[bounce_0.8s_infinite_100ms] h-2.5" />
@@ -152,10 +152,6 @@ export function AudioPlayer({ autoPlayTrigger }: AudioPlayerProps) {
             ) : (
               <Volume2 className="size-3 text-sepia/40" />
             )}
-
-            <span className="caps text-[0.46rem] tracking-widest text-ink/75 group-hover:text-ink">
-              {invite.bgm.title}
-            </span>
           </div>
         </button>
       </motion.div>
